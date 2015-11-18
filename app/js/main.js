@@ -33297,6 +33297,7 @@ var config = function config($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/app-layout/home.tpl.html'
   }).state('root.add', {
     url: '/add',
+    controller: 'AddController as vm',
     templateUrl: 'templates/app-images/add.tpl.html'
   });
 };
@@ -33350,6 +33351,80 @@ _angular2['default'].module('app.core', ['ui.router']).constant('PARSE', _consta
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+var AddController = function AddController(AddService, $state) {
+
+  var vm = this;
+
+  vm.addPhoto = addPhoto;
+
+  function addPhoto(image) {
+    AddService.addImage(image).then(function (res) {
+      console.log(res);
+      $state.go('root.home');
+    });
+  }
+};
+
+AddController.$inject = ['AddService', '$state'];
+
+exports['default'] = AddController;
+module.exports = exports['default'];
+
+},{}],8:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _angular = require('angular');
+
+var _angular2 = _interopRequireDefault(_angular);
+
+require('../app-core/index');
+
+var _controllersAddcontroller = require('./controllers/addcontroller');
+
+var _controllersAddcontroller2 = _interopRequireDefault(_controllersAddcontroller);
+
+var _servicesAddservice = require('./services/addservice');
+
+var _servicesAddservice2 = _interopRequireDefault(_servicesAddservice);
+
+_angular2['default'].module('app.images', ['app.core']).service('AddService', _servicesAddservice2['default']).controller('AddController', _controllersAddcontroller2['default']);
+
+},{"../app-core/index":6,"./controllers/addcontroller":7,"./services/addservice":9,"angular":3}],9:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var AddService = function AddService($http, PARSE) {
+
+  var url = PARSE.URL + 'classes/corinstagram';
+
+  this.addImage = addImage;
+
+  var Image = function Image(imageObj) {
+    this.photo = imageObj.photo;
+    this.caption = imageObj.caption;
+  };
+
+  function addImage(imageObj) {
+    var i = new Image(imageObj);
+    return $http.post(url, i, PARSE.CONFIG);
+  }
+};
+
+AddService.$inject = ['$http', 'PARSE'];
+
+exports['default'] = AddService;
+module.exports = exports['default'];
+
+},{}],10:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var HomeController = function HomeController(GalleryService) {
 
   var vm = this;
@@ -33370,7 +33445,7 @@ HomeController.$inject = ['GalleryService'];
 exports['default'] = HomeController;
 module.exports = exports['default'];
 
-},{}],8:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -33393,7 +33468,7 @@ coriImage.$inject = ['GalleryService'];
 exports['default'] = coriImage;
 module.exports = exports['default'];
 
-},{}],9:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -33418,7 +33493,7 @@ var _servicesGalleryservice2 = _interopRequireDefault(_servicesGalleryservice);
 
 _angular2['default'].module('app.layout', ['app.core']).service('GalleryService', _servicesGalleryservice2['default']).controller('HomeController', _controllersHomecontroller2['default']).directive('coriImage', _directivesImagedirective2['default']);
 
-},{"../app-core/index":6,"./controllers/homecontroller":7,"./directives/imagedirective":8,"./services/galleryservice":10,"angular":3}],10:[function(require,module,exports){
+},{"../app-core/index":6,"./controllers/homecontroller":10,"./directives/imagedirective":11,"./services/galleryservice":13,"angular":3}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -33440,7 +33515,7 @@ GalleryService.$inject = ['$http', 'PARSE'];
 exports['default'] = GalleryService;
 module.exports = exports['default'];
 
-},{}],11:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -33455,9 +33530,11 @@ require('./app-core/index');
 
 require('./app-layout/index');
 
-_angular2['default'].module('app', ['app.core', 'app.layout']);
+require('./app-images/index');
 
-},{"./app-core/index":6,"./app-layout/index":9,"angular":3,"angular-ui-router":1}]},{},[11])
+_angular2['default'].module('app', ['app.core', 'app.layout', 'app.images']);
+
+},{"./app-core/index":6,"./app-images/index":8,"./app-layout/index":12,"angular":3,"angular-ui-router":1}]},{},[14])
 
 
 //# sourceMappingURL=main.js.map

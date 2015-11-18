@@ -14,6 +14,7 @@ let config = function($stateProvider, $urlRouterProvider) {
     })
     .state('root.add', {
       url: '/add',
+      controller: 'AddController as vm',
       templateUrl: 'templates/app-images/add.tpl.html'
     });
   
