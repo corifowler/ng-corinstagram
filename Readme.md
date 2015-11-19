@@ -1,6 +1,6 @@
-## Welcome to My Project
+## Corinstagram (angular-style)
 
-> I am your Readme.md file, you should probably update me.
+> View this project: http://threatening-milk.surge.sh/
 
 
 ## Usage
@@ -26,8 +26,6 @@
 At the top of your `main.scss` file, just import any of the following:
 
 ```scss
-@import "bourbon";
-@import "neat";
 
 @import "foundation";
 
