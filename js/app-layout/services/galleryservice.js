@@ -4,11 +4,6 @@ let GalleryService = function($http, PARSE) {
   
   this.getGallery = getGallery;
   this.addLike = addLike;
-  this.toggleClass = toggleClass;
-
-  function toggleClass () {
-    this.element.removeClass('hidden').addClass(shown);
-  }
 
   function getGallery () {
     return $http.get(url, PARSE.CONFIG);

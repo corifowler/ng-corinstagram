@@ -1,6 +1,4 @@
-import angular from 'angular';
-
-let coriImage = function(GalleryService) {
+let coriImage = function(GalleryService, $timeout) {
 
   return {
       restrict: 'AE',
@@ -30,6 +28,6 @@ let coriImage = function(GalleryService) {
 
 };
 
-coriImage.$inject = ['GalleryService'];
+coriImage.$inject = ['GalleryService', '$timeout'];
 
 export default coriImage;

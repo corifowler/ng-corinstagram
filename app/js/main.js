@@ -33451,14 +33451,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _angular = require('angular');
-
-var _angular2 = _interopRequireDefault(_angular);
-
-var coriImage = function coriImage(GalleryService) {
+var coriImage = function coriImage(GalleryService, $timeout) {
 
   return {
     restrict: 'AE',
@@ -33481,12 +33474,12 @@ var coriImage = function coriImage(GalleryService) {
   };
 };
 
-coriImage.$inject = ['GalleryService'];
+coriImage.$inject = ['GalleryService', '$timeout'];
 
 exports['default'] = coriImage;
 module.exports = exports['default'];
 
-},{"angular":3}],12:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -33523,11 +33516,6 @@ var GalleryService = function GalleryService($http, PARSE) {
 
   this.getGallery = getGallery;
   this.addLike = addLike;
-  this.toggleClass = toggleClass;
-
-  function toggleClass() {
-    this.element.removeClass('hidden').addClass(shown);
-  }
 
   function getGallery() {
     return $http.get(url, PARSE.CONFIG);
