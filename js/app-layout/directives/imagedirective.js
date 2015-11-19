@@ -6,11 +6,20 @@ let coriImage = function(GalleryService) {
         image: "=image"
       },
       template: `
-        <ul class="small-block-grid-3">
-          <li><img ng-src="{{image.photo}}"></li>
-        </ul>
+        <div class="tile">
+          <img ng-src="{{image.photo}}">
+          <span><i class="fa fa-heart shown"></i></span>
+          <p class="likes-count">{{image.likes}} <i class="fa fa-heart"></i></p>
+        </div>
       `,
       link: function (scope, element, attrs) {
+        element.on('click', function () {
+          console.log('you clicked it');
+          // element.children().removeClass('hidden').addClass('shown');
+          GalleryService.addLike(scope.image).then( (res) => {
+            console.log(res);
+          });
+        });
       }
     };
 

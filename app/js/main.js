@@ -33458,8 +33458,16 @@ var coriImage = function coriImage(GalleryService) {
     scope: {
       image: "=image"
     },
-    template: '\n        <ul class="small-block-grid-3">\n          <li><img ng-src="{{image.photo}}"></li>\n        </ul>\n      ',
-    link: function link(scope, element, attrs) {}
+    template: '\n        <div class="tile">\n          <img ng-src="{{image.photo}}">\n          <span><i class="fa fa-heart shown"></i></span>\n          <p class="likes-count">{{image.likes}} <i class="fa fa-heart"></i></p>\n        </div>\n      ',
+    link: function link(scope, element, attrs) {
+      element.on('click', function () {
+        console.log('you clicked it');
+        // element.children().removeClass('hidden').addClass('shown');
+        GalleryService.addLike(scope.image).then(function (res) {
+          console.log(res);
+        });
+      });
+    }
   };
 };
 
@@ -33504,9 +33512,15 @@ var GalleryService = function GalleryService($http, PARSE) {
   var url = PARSE.URL + 'classes/corinstagram';
 
   this.getGallery = getGallery;
+  this.addLike = addLike;
 
   function getGallery() {
     return $http.get(url, PARSE.CONFIG);
+  }
+
+  function addLike(imgObj) {
+    imgObj.likes = imgObj.likes + 1;
+    return $http.put(url + '/' + imgObj.objectId, imgObj, PARSE.CONFIG);
   }
 };
 

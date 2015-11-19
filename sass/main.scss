@@ -1,9 +1,11 @@
 // Put any @imports here
 // See Readme for a list of supported ones
 @import "foundation";
+@import "font-awesome";
 
 body {
   background: #e2ebf3;
+  font-family: 'Lobster', cursive;
 }
 
 .container {
@@ -12,8 +14,36 @@ body {
 }
 
 body img {
-  display: inline-block;
   width: 250px;
   height: 250px;
 }
 
+body .tile {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  .likes-count {
+    text-align: center;
+  }
+}
+
+.fa-heart {
+  color: #ff3630;
+}
+
+body .hidden {
+  position: absolute;
+  left: 40%;
+  top: 35%;
+  font-size: 50px;
+  visibility: hidden;
+}
+
+body .shown {
+  position: absolute;
+  left: 40%;
+  top: 35%;
+  font-size: 50px;
+}
